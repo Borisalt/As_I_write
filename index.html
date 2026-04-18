@@ -32,7 +32,7 @@
   html, body {
     width: 100%;
     min-height: 100vh;
-    background: transparent; /* 투명 배경으로 변경 */
+    background: transparent; /* 투명 배경 */
     font-family: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
     color: var(--ice);
     overflow: hidden;
@@ -82,10 +82,12 @@
         var(--sky-mid) 72%,
         var(--ice) 100%);
     border-radius: 6px;
+    /* --- 그림자 블러 및 크기 대폭 축소 --- */
     box-shadow:
-      0 20px 60px rgba(31, 34, 69, 0.55),
-      0 0 100px rgba(213, 237, 244, 0.15),
-      inset 0 0 60px rgba(213, 237, 244, 0.1);
+      0 10px 25px rgba(31, 34, 69, 0.55),
+      0 0 30px rgba(213, 237, 244, 0.15),
+      inset 0 0 20px rgba(213, 237, 244, 0.1);
+    /* ----------------------------------- */
     overflow: hidden;
   }
 
@@ -200,10 +202,12 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    /* --- 그림자 블러 및 크기 대폭 축소 --- */
     box-shadow:
-      0 20px 60px rgba(31, 34, 69, 0.3),
-      0 0 70px rgba(248, 191, 205, 0.2),
+      0 10px 25px rgba(31, 34, 69, 0.3),
+      0 0 25px rgba(248, 191, 205, 0.2),
       inset 0 0 2px rgba(201, 166, 90, 0.6);
+    /* ----------------------------------- */
   }
   .book-open.visible {
     opacity: 1;
@@ -420,7 +424,6 @@
 </head>
 <body>
 <div class="stage">
-  <!-- CLOSED BOOK -->
   <div class="book" id="book" role="button" tabindex="0" aria-label="책 열기">
     <div class="cover">
       <div class="frame"></div>
@@ -429,7 +432,6 @@
       <div class="sigil-wrap">
         <svg class="sigil-svg" viewBox="-100 -100 200 200" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <!-- crescent moon via mask: visible = white, hidden = black -->
             <mask id="moonMask">
               <rect x="-100" y="-100" width="200" height="200" fill="white"/>
               <circle cx="18" cy="-18" r="28" fill="black"/>
@@ -445,14 +447,12 @@
             </radialGradient>
           </defs>
 
-          <!-- subtle outer ring -->
           <circle cx="0" cy="0" r="82"
                   fill="none"
                   stroke="rgba(213, 237, 244, 0.28)"
                   stroke-width="0.5"
                   stroke-dasharray="1.5 3"/>
 
-          <!-- SUN: 12 wavy flame petals, slow rotation -->
           <g>
             <animateTransform
               attributeName="transform"
@@ -480,14 +480,11 @@
             </g>
           </g>
 
-          <!-- thin inner circle -->
           <circle cx="0" cy="0" r="20"
                   fill="none"
                   stroke="rgba(213, 237, 244, 0.55)"
                   stroke-width="0.6"/>
 
-          <!-- CRESCENT MOON, overlapping upper-right -->
-          <!-- soft glow behind moon -->
           <circle cx="28" cy="-28" r="34"
                   fill="rgba(255, 255, 255, 0.22)"
                   mask="url(#moonMask)"/>
@@ -503,7 +500,6 @@
     </div>
   </div>
 
-  <!-- OPEN STATE -->
   <div class="book-open" id="bookOpen">
     <button class="close-btn" id="closeBtn" aria-label="닫기">×</button>
     <div class="title">GRIMOIRE</div>
